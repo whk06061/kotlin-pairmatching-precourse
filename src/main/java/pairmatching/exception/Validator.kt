@@ -5,7 +5,7 @@ import pairmatching.constants.MenuOption
 
 class Validator {
 
-    fun checkMenuOption(input: String): String {
+    fun checkMenuOptionInput(input: String): String {
         return when (input) {
             MenuOption.MATCHING_PAIR.getOption() -> input
             MenuOption.VIEW_PAIR.getOption() -> input
@@ -13,5 +13,12 @@ class Validator {
             MenuOption.QUIT.getOption() -> input
             else -> throw IllegalArgumentException(ErrorMessage.ERRROR_MENU_OPTION.getMessage())
         }
+    }
+
+    fun checkPairMatchingInput(input: String):List<String> {
+        val inputSplit = input.split(",")
+        inputSplit.forEach{it.replace(" ", "")}
+        if (inputSplit.size != 3) throw IllegalArgumentException(ErrorMessage.ERROR_PAIR_MATCHING_INPUT.getMessage())
+        return inputSplit
     }
 }

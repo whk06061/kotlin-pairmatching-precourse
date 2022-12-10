@@ -4,13 +4,12 @@ import camp.nextstep.edu.missionutils.Randoms
 import pairmatching.constants.ErrorMessage
 
 class MatchPair {
-    fun match(crews: List<String>, pairs: List<Set<String>>): List<Set<String>> {
-        println("이미 만들어진 페어: $pairs")
-        if (crews.size % 2 == 0) return matchEven(crews, pairs)
-        return matchOdd(crews, pairs)
+    fun match(crews: List<String>, levelPairs: List<List<Set<String>>>): List<Set<String>> {
+        if (crews.size % 2 == 0) return matchEven(crews, levelPairs)
+        return matchOdd(crews, levelPairs)
     }
 
-    private fun matchEven(crews: List<String>, pairs: List<Set<String>>): List<Set<String>> {
+    private fun matchEven(crews: List<String>, levelPairs: List<List<Set<String>>>): List<Set<String>> {
         val result = mutableListOf<Set<String>>()
         var count = 1
         while (count < 4) {
@@ -18,8 +17,7 @@ class MatchPair {
             val names = shuffle(crews)
             for (i in names.indices step 2) {
                 val tmp = setOf(names[i], names[i + 1])
-                println("만들려는 페어: $tmp")
-                if (!checkAvailable(pairs, tmp)) {
+                if (!checkAvailable(levelPairs, tmp)) {
                     count += 1
                     result.clear()
                     reMatch = true
@@ -32,7 +30,7 @@ class MatchPair {
         throw IllegalArgumentException(ErrorMessage.ERROR_MATCHING_IMPOSSIBLE.getMessage())
     }
 
-    private fun matchOdd(crews: List<String>, pairs: List<Set<String>>): List<Set<String>> {
+    private fun matchOdd(crews: List<String>, levelPairs: List<List<Set<String>>>): List<Set<String>> {
         val result = mutableListOf<Set<String>>()
         var count = 1
         while (count < 4) {
@@ -45,7 +43,7 @@ class MatchPair {
                 } else {
                     tmp = setOf(names[i], names[i + 1])
                 }
-                if (!checkAvailable(pairs, tmp)) {
+                if (!checkAvailable(levelPairs, tmp)) {
                     count += 1
                     result.clear()
                     reMatch = true
@@ -62,9 +60,11 @@ class MatchPair {
         return Randoms.shuffle(crews)
     }
 
-    private fun checkAvailable(pairs: List<Set<String>>, target: Set<String>): Boolean {
-        for (pair in pairs) {
-            if (pair.containsAll(target)) return false
+    private fun checkAvailable(levelPairs: List<List<Set<String>>>, target: Set<String>): Boolean {
+        for (pairs in levelPairs) {
+            for (pair in pairs) {
+                if (pair.containsAll(target)) return false
+            }
         }
         return true
     }

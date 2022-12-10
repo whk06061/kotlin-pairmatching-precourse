@@ -9,6 +9,16 @@ class InputView {
 
     fun readMenuOption(): String {
         val input = Console.readLine()
-        return validator.checkMenuOption(input)
+        return validator.checkMenuOptionInput(input)
+    }
+
+    fun readPairMatching():List<String>{
+        val input = Console.readLine()
+        return validator.checkPairMatchingInput(input)
+    }
+
+    fun readReMatch():String{
+        val input = Console.readLine()
+        return input
     }
 }
