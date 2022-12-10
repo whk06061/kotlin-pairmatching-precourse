@@ -1,7 +1,6 @@
-package pairmatching;
+package pairmatching
 
-public class Application {
-    public static void main(String[] args) {
-        // TODO 구현 진행
-    }
+
+fun main() {
+    // TODO 구현 진행
 }
