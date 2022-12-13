@@ -1,8 +1,8 @@
 package pairmatching.domain
 
-class LevelPair{
+class LevelPair {
 
-    private var missionPairs = mutableMapOf <String, List<Set<String>>>()
+    private var missionPairs = mutableMapOf<String, List<Set<String>>>()
 
     fun setMissionPairs(mission: String, pairs: List<Set<String>>) {
         missionPairs[mission] = pairs

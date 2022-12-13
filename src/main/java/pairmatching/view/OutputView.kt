@@ -43,7 +43,7 @@ class OutputView {
         println()
     }
 
-    fun printResetMent(){
+    fun printResetMent() {
         println()
         println(PairMatchingMent.RESET.getMessage())
         println()

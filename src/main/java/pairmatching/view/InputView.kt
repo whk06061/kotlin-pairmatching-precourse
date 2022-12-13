@@ -12,12 +12,12 @@ class InputView {
         return validator.checkMenuOptionInput(input)
     }
 
-    fun readPairMatching():List<String>{
+    fun readPairMatching(): List<String> {
         val input = Console.readLine()
         return validator.checkPairMatchingInput(input)
     }
 
-    fun readReMatch():String{
+    fun readReMatch(): String {
         val input = Console.readLine()
         return input
     }

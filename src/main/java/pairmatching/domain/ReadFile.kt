@@ -16,7 +16,7 @@ class ReadFile {
         return read(bePath)
     }
 
-    fun read(path:String): List<String>{
+    fun read(path: String): List<String> {
         val read = FileReader(path)
         return read.readLines()
     }

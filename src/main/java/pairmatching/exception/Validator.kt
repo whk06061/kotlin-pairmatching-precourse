@@ -15,9 +15,9 @@ class Validator {
         }
     }
 
-    fun checkPairMatchingInput(input: String):List<String> {
+    fun checkPairMatchingInput(input: String): List<String> {
         val inputSplit = input.split(",")
-        inputSplit.forEach{it.replace(" ", "")}
+        inputSplit.forEach { it.replace(" ", "") }
         if (inputSplit.size != 3) throw IllegalArgumentException(ErrorMessage.ERROR_PAIR_MATCHING_INPUT.getMessage())
         return inputSplit
     }
