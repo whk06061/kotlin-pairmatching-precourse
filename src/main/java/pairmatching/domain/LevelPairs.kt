@@ -1,14 +1,18 @@
 package pairmatching.domain
 
-class LevelPair {
+class LevelPairs(private val level: String) {
 
     private var missionPairs = mutableMapOf<String, List<Set<String>>>()
 
-    fun setMissionPairs(mission: String, pairs: List<Set<String>>) {
+    fun levelName(): String {
+        return level
+    }
+
+    fun setMissionPairsByMissionName(mission: String, pairs: List<Set<String>>) {
         missionPairs[mission] = pairs
     }
 
-    fun getMissionPairs(mission: String): List<Set<String>> {
+    fun getMissionPairsByMissionName(mission: String): List<Set<String>> {
         return this.missionPairs.getOrDefault(mission, listOf())
     }
 
@@ -18,5 +22,9 @@ class LevelPair {
             result.add(value)
         }
         return result
+    }
+
+    fun deleteMissionPairsByMissionName(mission: String) {
+        missionPairs.entries.removeIf { it.key == mission }
     }
 }
