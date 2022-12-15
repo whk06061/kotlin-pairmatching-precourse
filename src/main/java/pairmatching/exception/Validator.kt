@@ -1,6 +1,7 @@
 package pairmatching.exception
 
 import pairmatching.constants.ErrorMessage
+import pairmatching.constants.Level
 import pairmatching.constants.MenuOption
 
 class Validator {
@@ -20,6 +21,15 @@ class Validator {
         val result = mutableListOf<String>()
         inputSplit.forEach { result.add(it.replace(" ", "")) }
         if (result.size != 3) throw IllegalArgumentException(ErrorMessage.ERROR_PAIR_MATCHING_INPUT.getMessage())
+        val level = result[1]
+        val mission = result[2]
+        Level.values().forEach {
+            if (it.getLevelName() == level) {
+                if (!it.getMissions()
+                        .contains(mission)
+                ) throw IllegalArgumentException(ErrorMessage.ERROR_MISSION_NAME.getMessage())
+            }
+        }
         return result
     }
 }

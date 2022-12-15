@@ -29,9 +29,10 @@ class Controller {
         return RepeatInputProcess.repeat { inputView.readMenuOption() } as String
     }
 
+    @Suppress("UNCHECKED_CAST")
     private fun matchPair() {
         outputView.printPairMatchingMent()
-        val (course, level, mission) = inputView.readPairMatching()
+        val (course, level, mission) = RepeatInputProcess.repeat { inputView.readPairMatching() } as List<String>
         when (course) {
             Course.FRONTEND.getCourseName() -> {
                 val levelPairs = PairsRepository.frontEndLevelPairs().find { it.levelName() == level }

@@ -8,7 +8,7 @@ object RepeatInputProcess {
         do {
             try {
                 return inputProcess()
-            } catch (e: Exception) {
+            } catch (e: IllegalArgumentException) {
                 outputView.printErrorMessage(e.message.toString())
             }
         } while (true)
